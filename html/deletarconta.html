@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+	    <meta charset="utf-8">
+        <meta http-equiv="content-language" content="pt-br" />      
+
+        <!-- LINKS DOCS -->
+	    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+	    <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
+        <link rel="stylesheet" type="text/css" href="../css/fonts-icones.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="icon" href="../images/fevicon.png" type="image/gif"/>
+
+	    <title>Prevnergo</title>
+
+        <script>
+            // Função Para Exibir o Pop-up de Cadastro com Sucesso
+            function exibirPopupCadastro() {
+                // Verifica se o Parâmetro "cadastro_sucesso" Está Presente na URL
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('cadastro_sucesso')) {
+                    // Exibe o Pop-up
+                    alert("Conta Deletada!");
+                }
+            }
+    
+            // Chama a Função ao Carregar a Página
+            window.onload = exibirPopupCadastro;
+        </script>
+
+    </head>
+    <body>
+        <header class="main_header container">        
+            <div class="content">
+                <div class="main_header_logo">
+                    <img src="../images/logocad.png" alt="logo.png"/>
+                </div>
+            </div>
+        </header>
+
+        <main class="main_content container">
+        
+            <section class="section-seu-codigo container">
+                <div class="content">          
+                    <div class="box-artigo">
+                    <!-- FORM COMEÇO -->
+                        <div class="container_form">
+                            <h1>Excluir Conta</h1>
+                                <form class="form" action="../php/deletausuario.php" method="post" onsubmit="return confirmarDelecao(), removeCPFFormatting()"> 
+                                    <div class="form_grupo">
+                                        <label for="cpf" class="form_label">CPF</label>
+                                        <input type="text" name="idcpfusuario" class="form_input" id="idcpfusuario" placeholder="Somente números" required oninput="formatCPF(this)">
+                                    </div>
+
+                                    <div class="form_grupo">
+                                        <label for="senha" class="form_label">Senha</label>
+                                        <input type="password" name="senha" class="form_input" id="senha" placeholder="Senha" required>
+                                    </div>
+                                    <div class="submit">
+                                        <input type="hidden" name="acao" value="enviar">
+                                        <button type="submit" name="submit" class="submit_btn" >Deletar</button>
+                                    </div>
+                                </div> 
+                                    
+                                </form>
+                        </div>
+                    <!-- FORM FINAL -->
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+        </main>
+    
+        <script>
+            // função para colocar pontos e traço quando usuário digita
+            function formatCPF(input) {
+                let value = input.value.replace(/\D/g, '');
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
+                }
+
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+                input.value = value;
+            }
+            // função para remover os pontos e traço do CPF
+            function removeCPFFormatting() {
+                const cpfInput = document.getElementById('idcpfusuario');
+                cpfInput.value = cpfInput.value.replace(/\D/g, '');
+            }
+
+            // Função para exibir o Pop-up de confirmação
+            function confirmarDelecao() {
+                if (confirm("Tem certeza de que deseja excluir a conta?")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
+        
+    </body>
+</html>

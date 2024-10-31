@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserção de Artigo</title>
+
+    <!-- Incluindo CSS do Quill -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <!-- Estilo customizado para o formulário -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, #editor-container {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #editor-container {
+            height: 200px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <center><h1>Inserir Prévia de Artigo</h1></center>
+
+    <form action="../php/inserirartigobd.php" method="POST" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
+        <!-- Campo para o nome do autor -->
+        <label for="author">Nome do Autor:</label><br>
+        <input type="text" id="author" name="author" required><br><br>
+
+        <!-- Campo para a data de publicação -->
+        <label for="publishDate">Data de Publicação:</label><br>
+        <input type="date" id="publishDate" name="publishDate" required><br><br>
+
+        <!-- Campo para o conteúdo da prévia do artigo -->
+        <label for="previewContent">Prévia do Artigo:</label><br>
+        <div id="editor-container"></div>
+        <textarea id="previewContent" name="previewContent" style="display:none;"></textarea><br><br>
+
+        <!-- Campo para o link do artigo -->
+        <label for="articleLink">Link do Artigo (opcional):</label><br>
+        <input type="url" id="articleLink" name="articleLink"><br><br>
+
+        <!-- Campo para upload do arquivo do artigo -->
+        <label for="articleFile">Anexar Documento do Artigo (PDF ou DOC):</label><br>
+        <input type="file" id="articleFile" name="articleFile" accept=".pdf,.doc,.docx"><br><br>
+
+        <!-- Botão de submissão -->
+        <button type="submit">Salvar Prévia</button>
+    </form>
+
+    <!-- Incluindo os scripts do Quill -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        // Inicializa o Quill no editor-container
+        var quill = new Quill('#editor-container', {
+            theme: 'snow',   // Usando o tema "Snow"
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'blockquote', 'code-block'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+                ]
+            }
+        });
+
+        // Função para enviar o conteúdo do Quill no formulário
+        function handleSubmit(event) {
+            // Previne o envio padrão
+            event.preventDefault();
+
+            // Obtém o conteúdo HTML do Quill
+            var previewContent = document.querySelector('textarea[name=previewContent]');
+            previewContent.value = quill.root.innerHTML;
+
+            // Envia o formulário após definir o valor do conteúdo
+            event.target.submit();
+        }
+    </script>
+
+</body>
+</html>

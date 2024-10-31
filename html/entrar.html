@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+	    <meta charset="utf-8">
+        <meta http-equiv="content-language" content="pt-br" />      
+
+        <!-- LINKS DOCS -->
+	    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+	    <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
+        <link rel="stylesheet" type="text/css" href="../css/fonts-icones.css">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="icon" href="../images/fevicon.png" type="image/gif"/>
+
+	    <title>Prevnergo</title>
+
+        <script>
+            // Função para Exibir o pop-up de Cadastro com Sucesso
+            function exibirPopupCadastro() {
+                // Verifica se o Parâmetro "cadastro_sucesso" Está Presente na URL
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('cadastro_sucesso')) {
+                    // Exibe o Pop-up
+                    alert("Usuário Cadastrado com Sucesso!");
+                }
+            }
+    
+            // Chama a Função ao Carregar a Página
+            window.onload = exibirPopupCadastro;
+        </script>
+
+    </head>
+    <body>
+        <header class="main_header container">        
+            <div class="content">
+                <div class="main_header_logo">
+                    <img src="../images/logocad.png" alt="logo.png"/>
+                </div>
+            </div>
+        </header>
+
+        <main class="main_content container">
+        
+            <section class="section-seu-codigo container">
+                <div class="content">          
+                    <div class="box-artigo">
+                    <!-- FORM COMEÇO -->
+                        <div class="container_form">
+                            <h1>Conecte-se</h1>
+                                <form class="form" action="../php/consultabd.php" method="post" onsubmit="removeCPFFormatting()">
+                                    <div class="form_grupo">
+                                        <label for="cpf" class="form_label">CPF</label>
+                                        <input type="text" name="cpf" class="form_input" id="cpf" placeholder="Somente números" required oninput="formatCPF(this)">
+                                    </div>
+
+                                    <div class="form_grupo">
+                                        <label for="senha" class="form_label">Senha</label>
+                                        <input type="password" name="senha" class="form_input" id="senha" placeholder="Senha" required>
+                                    </div>
+                                    <li><a href="../php/alterarsenha.php">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span class="padding_10">Esqueceu a senha?</span></a>
+                                    </li>
+                                    <div class="submit">
+                                        <input type="hidden" name="acao" value="enviar">
+                                        <button type="submit" name="submit" class="submit_btn" >Entrar</button>
+                                    </div><br>
+                                    <li><a href="../html/cadastro.html">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span class="padding_10">Não tem uma Conta? Cadastre-se</span></a>
+                                    </li>
+                                </div> 
+                                    
+                                </form>
+                        </div>
+                    <!-- FORM FINAL -->
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            function formatCPF(input) {
+                let value = input.value.replace(/\D/g, '');
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
+                }
+
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+                input.value = value;
+            }
+
+            function removeCPFFormatting() {
+                const cpfInput = document.getElementById('cpf');
+                cpfInput.value = cpfInput.value.replace(/\D/g, '');
+            }
+        </script>   
+
+    </body>
+</html>

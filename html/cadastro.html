@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="content-language" content="pt-br" />
+
+        <!-- LINKS DOCS -->
+        <link rel="stylesheet" type="text/css" href="../css/reset.css">
+        <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
+        <link rel="stylesheet" type="text/css" href="../css/fonts-icones.css">
+        <link rel="icon" href="../images/fevicon.png" type="image/gif"/>
+
+        <title>Prevnergo</title>
+    </head>
+    <body>
+        <header class="main_header container">
+            <div class="content">
+                <div class="main_header_logo">
+                    <img src="../images/logocad.png" alt="logo.png"/>
+                </div>
+            </div>
+        </header>
+
+        <main class="main_content container">
+            <section class="section-seu-codigo container">
+                <div class="content">
+                    <div class="box-artigo">
+                        <!-- FORM COMEÇO -->
+                        <div class="container_form">
+                            <h1>Formulário de Cadastro</h1>
+                            <form class="form" action="../php/incluirbd.php" method="post" onsubmit="return validateForm()">
+                                <div class="form_grupo">
+                                    <label for="cpf" class="form_label">CPF</label>
+                                    <input type="text" name="idcpfusuario" class="form_input" id="idcpfusuario" placeholder="Somente números" required maxlength="14" oninput="formatCPF(this)">
+                                </div>
+
+                                <div class="form_grupo">
+                                    <label for="nome" class="form_label">Nome</label>
+                                    <input type="text" name="txnomeusuario" class="form_input" id="txnomeusuario" placeholder="Nome" required>
+                                </div>
+
+                                <div class="form_grupo">
+                                    <label for="e-mail" class="form_label">Email</label>
+                                    <input type="email" name="txemailusuario" class="form_input" id="txemailusuario" placeholder="seuemail@email.com" required>
+                                </div>
+
+                                <div class="form_grupo">
+                                    <label for="senha" class="form_label">Senha</label>
+                                    <input type="password" name="senha" class="form_input" id="senha" placeholder="Senha" required>
+                                </div>
+
+                                <div class="form_grupo">
+                                    <label for="senha" class="form_label">Confirme a senha</label>
+                                    <input type="password" name="confirmacaosenha" class="form_input" id="confirmacaosenha" placeholder="Senha" required>
+                                </div>
+                                
+                                <div class="form_grupo">
+                                    <span id="error-message" style="color:red;"></span>
+                                </div>
+
+                                <div class="form_grupo">
+                                    <span class="legenda">Usuário:</span>
+                                    <div class="radio-btn">
+                                        <input type="radio" class="form_new_input" id="cliente" name="aotipo" value="C">
+                                        <label for="cliente" class="radio_label form_label">
+                                            <span class="radio_new_btn"></span> Cliente
+                                        </label>
+                                    </div>
+
+                                    <div class="radio-btn">
+                                        <input type="radio" class="form_new_input" id="organizador" name="aotipo" value="A">
+                                        <label for="organizador" class="radio_label form_label">
+                                            <span class="radio_new_btn"></span> Analista
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="submit">
+                                    <input type="hidden" name="submit_usuario" value="1">
+                                    <button type="submit" name="submit" class="submit_btn">Cadastrar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- FORM FINAL -->
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            function formatCPF(input) {
+                let value = input.value.replace(/\D/g, '');
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
+                }
+
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+                input.value = value;
+            }
+
+            function removeCPFFormatting() {
+                const cpfInput = document.getElementById('idcpfusuario');
+                cpfInput.value = cpfInput.value.replace(/\D/g, '');
+            }
+
+            function validateForm() {
+                const senha = document.getElementById('senha').value;
+                const confirmacaosenha = document.getElementById('confirmacaosenha').value;
+                const errorMessage = document.getElementById('error-message');
+
+                if (senha !== confirmacaosenha) {
+                    errorMessage.textContent = 'As senhas não coincidem.';
+                    return false;
+                }
+
+                // Senhas coincidem, então remove a formatação do CPF
+                removeCPFFormatting();
+                errorMessage.textContent = '';
+                return true;
+            }
+        </script>
+    </body>
+</html>

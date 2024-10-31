@@ -1,0 +1,2646 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="pt-br" />
+
+    <!-- LINKS DOCS -->
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/cadastro.css">
+    <link rel="stylesheet" type="text/css" href="../css/fonts-icones.css">
+    <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+
+    <title>Prevnergo</title>
+    
+    <style>
+        .menu {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .menu a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .content-section {
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .form_grupo {
+            margin-bottom: 15px;
+        }
+
+        .radio-btn {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        /* Escondendo o radio original */
+        .radio-btn input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Estilo para os labels que vão representar os radios */
+        .radio-btn label {
+            cursor: pointer;
+            padding: 5px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Cor verde quando o radio for selecionado */
+        .radio-btn input[type="radio"]:checked + label {
+            background-color: #2E8B57;
+            color: white;
+        }
+
+        .menu a.voltar {
+            float: right; /* Alinha o botão Voltar à direita */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main_header container">
+        <div class="content">
+            <div class="main_header_logo">
+                <img src="../images/logocad.png" alt="logo.png" />
+            </div>
+            <nav class="menu">
+                <a href="checklists.html">Página Inicial Checklist</a>
+                <a href="#" onclick="loadContent('cadeira')">Checklist Cadeira</a>
+                <a href="#" onclick="loadContent('simplificado')">Checklist Geral Simplificado</a>
+                <a href="#" onclick="loadContent('lerdort')">Checklist LER/DORT</a>
+                <a href="#" onclick="loadContent('lombalgia')">Checklist Lombalgia</a>
+                <a href="#" onclick="loadContent('escritorio')">Checklist Escritório Completo</a>
+                <a href="#" class="voltar" onclick="window.history.back()">Voltar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main_content container">
+        <section class="section-container" id="contentSection">
+            <p>Por favor, selecione uma das opções no menu acima.</p>
+    </main>
+    <script>
+        function loadContent(section) {
+            var contentSection = document.getElementById('contentSection');
+
+            // Verifica qual seção foi clicada e altera o conteúdo da div
+            if (section === 'cadeira') {
+                contentSection.innerHTML = `
+                    <section class="section-seu-codigo container">
+                        <div class="content">
+                            <div class="box-artigo">
+                                <div class="container_form">
+                                    <h2>Checklist para avaliação simplificada da cadeira de trabalho e da mesa de trabalho</h2>
+                                    <p>(HUDSON DE ARAÚJO COUTO, 1998 - versão 2007).</p><br><hr><br><br>
+                                    
+                                    <form class="form" action="../php/relatoriocadeira.php" method="post">
+            
+                                        <!-- CAMPOS EXISTENTES -->
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Supervisor</label>
+                                            <input type="text" name="txrepresentante" class="form_input" id="txrepresentante" placeholder="Supervisor" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Prédio</label>
+                                            <input type="text" name="txnomepredio" class="form_input" id="txnomepredio" placeholder="Prédio" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Setor</label>
+                                            <input type="text" name="txcc" class="form_input" id="txcc" placeholder="Setor" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Cargo</label>
+                                            <input type="text" name="txestacao" class="form_input" id="txestacao" placeholder="Cargo" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">1 - Avaliação da Cadeira:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1.1 - Esforço muscular estático?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.1_sim" name="cadeira1.1" value="0">
+                                                <label for="cadeira1.1_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.1_nao" name="cadeira1.1" value="1">
+                                                <label for="cadeira1.1_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form_grupo">
+                                            <p>1.2 - Cadeira Estofada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.2_sim" name="cadeira1.2" value="0">
+                                                <label for="cadeira1.2_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.2_nao" name="cadeira1.2" value="1">
+                                                <label for="cadeira1.2_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.3 - Altura regulável?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.3_sim" name="cadeira1.3" value="0">
+                                                <label for="cadeira1.3_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.3_nao" name="cadeira1.3" value="1">
+                                                <label for="cadeira1.3_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.4 - Acionamento fácil da regulagem da altura?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.4_sim" name="cadeira1.4" value="0">
+                                                <label for="cadeira1.4_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.4_nao" name="cadeira1.4" value="1">
+                                                <label for="cadeira1.4_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.5 - Os pés ficam bem apoiados no chão ou em suporte próprio?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.5_sim" name="cadeira1.5" value="0">
+                                                <label for="cadeira1.5_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.5_nao" name="cadeira1.5" value="1">
+                                                <label for="cadeira1.5_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.6 - Largura da cadeira de dimensão correta?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.6_sim" name="cadeira1.6" value="0">
+                                                <label for="cadeira1.6_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.6_nao" name="cadeira1.6" value="1">
+                                                <label for="cadeira1.6_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.7 - Assento na horizontal, não jogando o corpo do funcionário para trás?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.7_sim" name="cadeira1.7" value="0">
+                                                <label for="cadeira1.7_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.7_nao" name="cadeira1.7" value="1">
+                                                <label for="cadeira1.7_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.8 - Assento de forma plana?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.8_sim" name="cadeira1.8" value="0">
+                                                <label for="cadeira1.8_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.8_nao" name="cadeira1.8" value="1">
+                                                <label for="cadeira1.8_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.9 - Borda anterior do assento arredondada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.9_sim" name="cadeira1.9" value="0">
+                                                <label for="cadeira1.9_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.9_nao" name="cadeira1.9" value="1">
+                                                <label for="cadeira1.9_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.10 - Apoio dorsal com regulagem da inclinação (seja através de regulagem própria, seja através de mecanismo de amortecimento)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.10_sim" name="cadeira1.10" value="0">
+                                                <label for="cadeira1.10_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.10_nao" name="cadeira1.10" value="1">
+                                                <label for="cadeira1.10_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.11 - Apoio dorsal fornece um suporte firme?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.11_sim" name="cadeira1.11" value="0">
+                                                <label for="cadeira1.11_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.11_nao" name="cadeira1.11" value="1">
+                                                <label for="cadeira1.11_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.12 - Forma do apoio acompanhando as curvaturas normais da coluna?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.12_sim" name="cadeira1.12" value="0">
+                                                <label for="cadeira1.12_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.12_nao" name="cadeira1.12" value="1">
+                                                <label for="cadeira1.12_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.13 - Regulagem da altura do apoio dorsal?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.13_sim" name="cadeira1.13" value="0">
+                                                <label for="cadeira1.13_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.13_nao" name="cadeira1.13" value="1">
+                                                <label for="cadeira1.13_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.14 - Espaço para acomodação das nádegas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.14_sim" name="cadeira1.14" value="0">
+                                                <label for="cadeira1.14_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.14_nao" name="cadeira1.14" value="1">
+                                                <label for="cadeira1.14_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.15 - Giratória?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.15_sim" name="cadeira1.15" value="0">
+                                                <label for="cadeira1.15_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.15_nao" name="cadeira1.15" value="1">
+                                                <label for="cadeira1.15_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.16 - Rodízios não muito duros nem muito leves?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.16_sim" name="cadeira1.16" value="0">
+                                                <label for="cadeira1.16_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.16_nao" name="cadeira1.16" value="1">
+                                                <label for="cadeira1.16_nao">Não (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.16_naoaplica" name="cadeira1.16" value="1">
+                                                <label for="cadeira1.16_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.17 - No caso da cadeira possuir braços.</p>
+                                            <p>1.17 - Os braços da cadeira prejudicam a aproximação do trabalhador até seu posto de trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.17_sim" name="cadeira1.17" value="0">
+                                                <label for="cadeira1.17_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.17_nao" name="cadeira1.17" value="1">
+                                                <label for="cadeira1.17_nao">Não (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1.17_naoaplica" name="cadeira1.17" value="1">
+                                                <label for="cadeira1.17_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <span class="legenda">2 - Avaliação da Mesa e dos Acessórios:</span>
+
+                                        <div class="form_grupo">                                          
+                                            <p>2.1 - Borda anterior da mesa arredondada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.1_sim" name="mesa2.1" value="1">
+                                                <label for="mesa2.1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.1_nao" name="mesa2.1" value="0">
+                                                <label for="mesa2.1_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.2 - Superfície da mesa é antirreflexiva?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.2_sim" name="mesa2.2" value="1">
+                                                <label for="mesa2.2_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.2_nao" name="mesa2.2" value="0">
+                                                <label for="mesa2.2_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.3 - Há espaço suficiente para as pernas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.3_sim" name="mesa2.3" value="1">
+                                                <label for="mesa2.3_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.3_nao" name="mesa2.3" value="0">
+                                                <label for="mesa2.3_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.4 - O tampo tem tamanho adequado permitindo boa distribuição de materiais e acessórios?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.4_sim" name="mesa2.4" value="1">
+                                                <label for="mesa2.4_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.4_nao" name="mesa2.4" value="0">
+                                                <label for="mesa2.4_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.5 - Acessórios (telefone, máquina de calcular e outros) dentro da área de alcance?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.5_sim" name="mesa2.5" value="1">
+                                                <label for="mesa2.5_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.5_nao" name="mesa2.5" value="0">
+                                                <label for="mesa2.5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.5_naoaplica" name="mesa2.5" value="1">
+                                                <label for="mesa2.5_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.6 - Gavetas leves?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.6_sim" name="mesa2.6" value="1">
+                                                <label for="mesa2.6_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.6_nao" name="mesa2.6" value="0">
+                                                <label for="mesa2.6_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.6_naoaplica" name="mesa2.6" value="1">
+                                                <label for="mesa2.6_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.7 - Gavetas com puxadores a ser puxados sob a forma de prensa?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.7_sim" name="mesa2.7" value="1">
+                                                <label for="mesa2.7_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.7_nao" name="mesa2.7" value="0">
+                                                <label for="mesa2.7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.7_naoaplica" name="mesa2.7" value="1">
+                                                <label for="mesa2.7_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.8 - Gaveteiros dos 2 lados?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.8_sim" name="mesa2.8" value="1">
+                                                <label for="mesa2.8_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.8_nao" name="mesa2.8" value="0">
+                                                <label for="mesa2.8_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="mesa2.8_naoaplica" name="mesa2.8" value="1">
+                                                <label for="mesa2.8_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="submit">
+                                            <input type="hidden" name="submit_evento" value="2">
+                                            <button type="submit" name="submit" class="submit_btn">Enviar Questionário</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </section>
+                </section>
+                `;
+            } else if (section === 'simplificado') {
+                contentSection.innerHTML = `
+                    <section class="section-seu-codigo container">
+                        <div class="content">
+                            <div class="box-artigo">
+                                <div class="container_form">
+                                    <h2>Checklist geral para avaliação simplificada da condição ergonômica de um posto de trabalho</h2>
+                                    <p>(HUDSON DE ARAÚJO COUTO, 1998 - versão 2007).</p><br><hr><br><br>
+                                    
+                                    <form class="form" action="../php/relatoriosimplificado.php" method="post">
+            
+                                        <!-- CAMPOS EXISTENTES -->
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Supervisor</label>
+                                            <input type="text" name="txrepresentante" class="form_input" id="txrepresentante" placeholder="Supervisor" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Prédio</label>
+                                            <input type="text" name="txnomepredio" class="form_input" id="txnomepredio" placeholder="Prédio" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Setor</label>
+                                            <input type="text" name="txcc" class="form_input" id="txcc" placeholder="Setor" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Cargo</label>
+                                            <input type="text" name="txestacao" class="form_input" id="txestacao" placeholder="Cargo" required>
+                                        </div>
+
+                                        <br><p>Observação: Este  Checklist  geral permite apenas uma classificação simplificada, pois não entra numa série 
+                                            de  detalhes , que serão colocados em outros questionários.  Sua grande utilidade é a sua aplicação  como 
+                                            screening, ou seja, para rapidamente se ter uma  idéia  da condição geral de um posto de trabalho sob o ponto 
+                                            de vista de ergonomia.</p><br>
+
+                                        <div class="form_grupo">
+                                            <p>1 - O corpo (tronco e cabeça) está na vertical?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="corpo1_sim" name="corpo1" value="1">
+                                                <label for="corpo1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="corpo1_nao" name="corpo1" value="0">
+                                                <label for="corpo1_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 - Os braços trabalham na vertical ou próximos da vertical?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="bracos2_sim" name="bracos2" value="1">
+                                                <label for="bracos2_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="bracos2_nao" name="bracos2" value="0">
+                                                <label for="bracos2_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 - Existe forma de esforço estático?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="esforco3_sim" name="esforco3" value="0">
+                                                <label for="esforco3_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="esforco3_nao" name="esforco3" value="1">
+                                                <label for="esforco3_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 - Existem posições forçadas no membro superior?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posicoes4_sim" name="posicoes4" value="0">
+                                                <label for="posicoes4_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posicoes4_nao" name="posicoes4" value="1">
+                                                <label for="posicoes4_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 - As mãos têm que fazer muita força?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca5_sim" name="forca5" value="0">
+                                                <label for="forca5_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca5_nao" name="forca5" value="1">
+                                                <label for="forca5_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 - Há repetitividade frequente de algum tipo específico de movimento?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade6_sim" name="repetitividade6" value="0">
+                                                <label for="repetitividade6_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade6_nao" name="repetitividade6" value="1">
+                                                <label for="repetitividade6_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 - Os pés estão apoiados?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pes7_sim" name="pes7" value="1">
+                                                <label for="pes7_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pes7_nao" name="pes7" value="0">
+                                                <label for="pes7_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 - Tem-se que fazer esforço muscular forte com a coluna ou outra parte do corpo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="esforco8_sim" name="esforco8" value="0">
+                                                <label for="esforco8_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="esforco8_nao" name="esforco8" value="1">
+                                                <label for="esforco8_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>9 - Há a possibilidade de flexibilidade postural no trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="flexibilidade9_sim" name="flexibilidade9" value="1">
+                                                <label for="flexibilidade9_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="flexibilidade9_nao" name="flexibilidade9" value="0">
+                                                <label for="flexibilidade9_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>10 - A pessoa tem a possibilidade de uma pequena pausa entre um ciclo e outro ou há um período definido de descanso após um certo número de horas trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pausa10_sim" name="pausa10" value="1">
+                                                <label for="pausa10_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pausa10_nao" name="pausa10" value="0">
+                                                <label for="pausa10_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="submit">
+                                            <input type="hidden" name="submit_evento" value="2">
+                                            <button type="submit" name="submit" class="submit_btn">Enviar Questionário</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </section>
+                </section>
+                `;
+            } else if (section === 'lerdort') {
+                contentSection.innerHTML = `
+                    <section class="section-seu-codigo container">
+                        <div class="content">
+                            <div class="box-artigo">
+                                <div class="container_form">
+                                    <h2>Checklist para avaliação simplificada do risco de ocorrência de LER/DORT</h2>
+                                    <p>(HUDSON DE ARAÚJO COUTO, 1998 - versão 2007).</p><br><hr><br><br>
+                                    
+                                    <form class="form" action="../php/relatoriolerdort.php" method="post">
+            
+                                        <!-- CAMPOS EXISTENTES -->
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Supervisor</label>
+                                            <input type="text" name="txrepresentante" class="form_input" id="txrepresentante" placeholder="Supervisor" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Prédio</label>
+                                            <input type="text" name="txnomepredio" class="form_input" id="txnomepredio" placeholder="Prédio" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Setor</label>
+                                            <input type="text" name="txcc" class="form_input" id="txcc" placeholder="Setor" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Cargo</label>
+                                            <input type="text" name="txestacao" class="form_input" id="txestacao" placeholder="Cargo" required>
+                                        </div>
+
+                                        <br><p>Este checklist  tem outro grande valor prático: permite que a área o utilize como forma de melhorar as 
+                                            condições de trabalho bem como para avaliar a evolução da melhoria dos postos de trabalho.</p><br>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">1 - Sobrecarga Física:</span>
+                                        
+                                        <div class="form_grupo">
+                                            <p>1.1 - O trabalho pode ser feito sem que haja contato da mão ou do punho ou dos tecidos moles com alguma quina viva de objeto ou ferramenta?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.1_sim" name="sobrecarga1.1" value="1">
+                                                <label for="sobrecarga1.1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.1_nao" name="sobrecarga1.1" value="0">
+                                                <label for="sobrecarga1.1_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.2 - O trabalho exige o uso de ferramentas vibratórias?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.2_sim" name="sobrecarga1.2" value="0">
+                                                <label for="sobrecarga1.2_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.2_nao" name="sobrecarga1.2" value="1">
+                                                <label for="sobrecarga1.2_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.3 - O trabalho é feito em condições ambientais de frio excessivo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.3_sim" name="sobrecarga1.3" value="1">
+                                                <label for="sobrecarga1.3_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.3_nao" name="sobrecarga1.3" value="0">
+                                                <label for="sobrecarga1.3_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.4 - A tarefa pode ser feita sem a necessidade do uso de luvas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.4_sim" name="sobrecarga1.4" value="1">
+                                                <label for="sobrecarga1.4_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.4_nao" name="sobrecarga1.4" value="0">
+                                                <label for="sobrecarga1.4_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1.5 - Entre um ciclo e outro há a possibilidade de um pequeno descanso? Ou há pausa bem definida de cerca de 5 a 10 minutos por hora?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.5_sim" name="sobrecarga1.5" value="1">
+                                                <label for="sobrecarga1.5_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="sobrecarga1.5_nao" name="sobrecarga1.5" value="0">
+                                                <label for="sobrecarga1.5_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">2 - Força com as Mãos:</span>
+
+                                        <div class="form_grupo">
+                                            <p>2.1 - Aparentemente as mãos fazem pouca força?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.1_sim" name="forca2.1" value="1">
+                                                <label for="forca2.1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.1_nao" name="forca2.1" value="0">
+                                                <label for="forca2.1_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.2 - A posição de pinça (pulpar, lateral ou palmar) é utilizada para fazer força?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.2_sim" name="forca2.2" value="0">
+                                                <label for="forca2.2_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.2_nao" name="forca2.2" value="1">
+                                                <label for="forca2.2_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.3 - Quando usados para apertar botões, teclas ou componentes, para montar ou inserir, ou para exercer compressão digital, a força de compressão exercida pelos dedos ou pela mão é pequena?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.3_sim" name="forca2.3" value="1">
+                                                <label for="forca2.3_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.3_nao" name="forca2.3" value="0">
+                                                <label for="forca2.3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.3_naoaplica" name="forca2.3" value="1">
+                                                <label for="forca2.3_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2.4 - O esforço manual detectado é feito durante mais que 10% do ciclo ou é repetido mais que 8 vezes por minuto?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.4_sim" name="forca2.4" value="0">
+                                                <label for="forca2.4_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="forca2.4_nao" name="forca2.4" value="1">
+                                                <label for="forca2.4_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">3 - Postura no Trabalho:</span>
+
+                                        <div class="form_grupo">
+                                            <p>3.1 - Há algum esforço estático da mão ou do antebraço na realização do trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.1_sim" name="postura3.1" value="0">
+                                                <label for="postura3.1_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.1_nao" name="postura3.1" value="1">
+                                                <label for="postura3.1_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3.2 - Há algum esforço estático do braço ou do pescoço na realização do trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.2_sim" name="postura3.2" value="0">
+                                                <label for="postura3.2_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.2_nao" name="postura3.2" value="1">
+                                                <label for="postura3.2_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3.3 - O trabalho é feito sem extensão ou flexão do punho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.3_sim" name="postura3.3" value="1">
+                                                <label for="postura3.3_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.3_nao" name="postura3.3" value="0">
+                                                <label for="postura3.3_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3.4 - O trabalho é feito sem desvio lateral forçado do punho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.4_sim" name="postura3.4" value="1">
+                                                <label for="postura3.4_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.4_nao" name="postura3.4" value="0">
+                                                <label for="postura3.4_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3.5 - O trabalhador tem flexibilidade na sua postura durante a jornada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.5_sim" name="postura3.5" value="1">
+                                                <label for="postura3.5_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.5_nao" name="postura3.5" value="0">
+                                                <label for="postura3.5_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3.6 - Há abdução do braço acima de 45 graus ou elevação dos braços acima do nível dos ombros como rotina na execução da tarefa?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.6_sim" name="postura3.6" value="0">
+                                                <label for="postura3.6_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.6_nao" name="postura3.6" value="1">
+                                                <label for="postura3.6_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3.7 - Existem outras posturas forçadas do membro superior?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.7_sim" name="postura3.7" value="0">
+                                                <label for="postura3.7_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postura3.7_nao" name="postura3.7" value="1">
+                                                <label for="postura3.7_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">4 - Posto de Trabalho:</span>
+
+                                        <div class="form_grupo">
+                                            <p>4.1 - O posto de trabalho permite flexibilidade no posicionamento das ferramentas, dispositivos ou componentes, incluindo inclinação dos objetos quando isto for necessário?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posto4.1_sim" name="posto4.1" value="1">
+                                                <label for="posto4.1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posto4.1_nao" name="posto4.1" value="0">
+                                                <label for="posto4.1_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4.2 - A altura do posto de trabalho é regulável?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posto4.2_sim" name="posto4.2" value="1">
+                                                <label for="posto4.2_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posto4.2_nao" name="posto4.2" value="0">
+                                                <label for="posto4.2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posto4.2_naoaplica" name="posto4.2" value="1">
+                                                <label for="posto4.2_naoaplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">5 - Repetitividade:</span>
+
+                                        <div class="form_grupo">
+                                            <p>5.1 - O ciclo de trabalho é maior que 30 segundos?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.1_sim" name="repetitividade5.1" value="1">
+                                                <label for="repetitividade5.1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.1_nao" name="repetitividade5.1" value="0">
+                                                <label for="repetitividade5.1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.1_naociclos" name="repetitividade5.1" value="1">
+                                                <label for="repetitividade5.1_naociclos">Não há ciclos (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5.2 - No caso de ciclo maior que 30 segundos, há diferentes padrões de movimento? (de forma a que um determinado elemento da tarefa ocupe menos de 50% do ciclo?)</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.2_sim" name="repetitividade5.2" value="1">
+                                                <label for="repetitividade5.2_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.2_nao" name="repetitividade5.2" value="0">
+                                                <label for="repetitividade5.2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.2_ciclo30" name="repetitividade5.2" value="1">
+                                                <label for="repetitividade5.2_ciclo30">Ciclo < 30 segundos (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5.3 - Há rodízios (revezamento) nas tarefas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.3_sim" name="repetitividade5.3" value="1">
+                                                <label for="repetitividade5.3_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.3_nao" name="repetitividade5.3" value="0">
+                                                <label for="repetitividade5.3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.3_naoaplica" name="repetitividade5.3" value="1">
+                                                <label for="repetitividade5.3_naoaplica">Desnecessário o revezamento (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5.4 - Há evidências do trabalhador estar com o tempo apertado para realizar a tarefa?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.4_sim" name="repetitividade5.4" value="0">
+                                                <label for="repetitividade5.4_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.4_nao" name="repetitividade5.4" value="1">
+                                                <label for="repetitividade5.4_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5.5 - A mesma tarefa é realizada por um mesmo trabalhador durante mais de 4 horas por dia?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.5_sim" name="repetitividade5.5" value="0">
+                                                <label for="repetitividade5.5_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="repetitividade5.5_nao" name="repetitividade5.5" value="1">
+                                                <label for="repetitividade5.5_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">6 - Ferramenta de Trabalho:</span>
+
+                                        <div class="form_grupo">
+                                            <p>6.1 - Para esforços em prensão: O diâmetro da manopla da ferramenta tem entre 6 a 7 cm (mulheres) ou entre 7 a 9 cm (homens)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="prensao6.1_sim" name="prensao6.1" value="1">
+                                                <label for="prensao6.1_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="prensao6.1_nao" name="prensao6.1" value="0">
+                                                <label for="prensao6.1_nao">Não (0)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6.2 - Para esforços em pinça: O cabo não é muito fino nem muito grosso e permite boa estabilidade da pega?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ferramenta6.2_sim" name="ferramenta6.2" value="1">
+                                                <label for="ferramenta6.2_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ferramenta6.2_nao" name="ferramenta6.2" value="0">
+                                                <label for="ferramenta6.2_sim">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ferramenta6.2_naoaplica" name="ferramenta6.2" value="1">
+                                                <label for="ferramenta6.2_naoaplica">Não há ferramenta (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6.3 - A ferramenta pesa menos de 1 kg, ou no caso da ferramenta pesar mais de 1 kg, a mesma se encontra suspensa por dispositivo capaz de reduzir o esforço humano?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ferramenta6.3_sim" name="ferramenta6.3" value="1">
+                                                <label for="ferramenta6.3_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ferramenta6.3_nao" name="ferramenta6.3" value="0">
+                                                <label for="ferramenta6.3_sim">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ferramenta6.3_naoaplica" name="ferramenta6.3" value="1">
+                                                <label for="ferramenta6.3_naoaplica">Não há ferramenta (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="submit">
+                                            <input type="hidden" name="submit_evento" value="2">
+                                            <button type="submit" name="submit" class="submit_btn">Enviar Questionário</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                </section>                
+            `;
+            } else if (section === 'lombalgia') {
+                contentSection.innerHTML = `
+                    <section class="section-seu-codigo container">
+                        <div class="content">
+                            <div class="box-artigo">
+                                <div class="container_form">
+                                    <h2>Checklist para avaliação simplificada do risco de lombalgia</h2>
+                                    <p>(HUDSON DE ARAÚJO COUTO, 1998 - versão 2007).</p><br><hr><br><br>
+                                    
+                                    <form class="form" action="../php/relatoriolombalgia.php" method="post">
+            
+                                        <!-- CAMPOS EXISTENTES -->
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Supervisor</label>
+                                            <input type="text" name="txrepresentante" class="form_input" id="txrepresentante" placeholder="Supervisor" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Prédio</label>
+                                            <input type="text" name="txnomepredio" class="form_input" id="txnomepredio" placeholder="Prédio" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Setor</label>
+                                            <input type="text" name="txcc" class="form_input" id="txcc" placeholder="Setor" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Cargo</label>
+                                            <input type="text" name="txestacao" class="form_input" id="txestacao" placeholder="Cargo" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>1- O trabalho envolve posicionamento estático do tronco em posição fletida entre 30 e 60 graus?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posicionamento1_sim" name="posicionamento1" value="0">
+                                                <label for="posicionamento1_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posicionamento1_nao" name="posicionamento1" value="1">
+                                                <label for="posicionamento1_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2- O trabalhador tem que frequentemente atingir o chão com as mãos, independente de carga?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="atingirchao2_sim" name="atingirchao2" value="0">
+                                                <label for="atingirchao2_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="atingirchao2_nao" name="atingirchao2" value="1">
+                                                <label for="atingirchao2_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3- O trabalho envolve pegar cargas maiores que 10Kg em frequência maior que uma vez a cada 5 minutos?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pegacargas3_sim" name="pegacargas3" value="0">
+                                                <label for="pegacargas3_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pegacargas3_nao" name="pegacargas3" value="1">
+                                                <label for="pegacargas3_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4- O trabalho envolve pegar cargas do chão, independente de peso, em frequência maior que 1 vez por minuto?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cargas4_sim" name="cargas4" value="0">
+                                                <label for="cargas4_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cargas4_nao" name="cargas4" value="1">
+                                                <label for="cargas4_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5- O trabalho envolve fazer esforço com ferramenta ou com as mãos estando o tronco encurvado?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="esforco5_sim" name="esforcos5" value="0">
+                                                <label for="esforco5_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="esforco5_nao" name="esforcos5" value="1">
+                                                <label for="esforco5_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6- O trabalho envolve a necessidade de manusear (levantar ou puxar ou empurrar) cargas que estejam longe do tronco?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="manusear6_sim" name="manusear6" value="0">
+                                                <label for="manusear6_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="manusear6_nao" name="manusear6" value="1">
+                                                <label for="manusear6_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7- O trabalho envolve a necessidade de manusear cargas  (levantar, puxar ou empurrar) com o tronco em posição assimétrica?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posicao7_sim" name="posicao7" value="0">
+                                                <label for="posicao7_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="posicao7_nao" name="posicao7" value="1">
+                                                <label for="posicao7_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8- O trabalho envolve a necessidade de carregar mais pesadas que 20kg mesmo ocasionalmente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pesadas8_sim" name="pesadas8" value="0">
+                                                <label for="pesadas8_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pesadas8_nao" name="pesadas8" value="1">
+                                                <label for="pesadas8_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>9- O trabalho envolve a necessidade de carregar cargas mais pesadas que 10kg frequentemente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cargas9_sim" name="cargas9" value="0">
+                                                <label for="cargas9_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cargas9_nao" name="cargas9" value="1">
+                                                <label for="cargas9_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>10- O trabalho envolve a necessidade de carregar cargas na cabeça?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cargas10_sim" name="cargas10" value="0">
+                                                <label for="cargas10_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cargas10_nao" name="cargas10" value="1">
+                                                <label for="cargas10_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>11- O trabalho envolve a necessidade de ficar constantemente com os braços longe do tronco em posição suspensa?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="bracos11_sim" name="bracos11" value="0">
+                                                <label for="bracos11_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="bracos11_nao" name="bracos11" value="1">
+                                                <label for="bracos11_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>12- O trabalho exige que o trabalhador fique com o tronco em  posição estática, sem apoio?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="tronco12_sim" name="tronco12" value="0">
+                                                <label for="tronco12_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="tronco12_nao" name="tronco12" value="1">
+                                                <label for="tronco12_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="submit">
+                                            <input type="hidden" name="submit_evento" value="2">
+                                            <button type="submit" name="submit" class="submit_btn">Enviar Questionário</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </section>
+                </section>
+                `;
+            } else if (section === 'escritorio') {
+                contentSection.innerHTML = `
+                    <section class="section-seu-codigo container">
+                        <div class="content">
+                            <div class="box-artigo">
+                                <div class="container_form">
+                                    <h2>Checklist para avaliação das condições ergonômicas em postos de trabalho e ambientes informatizados</h2>
+                                    <p>(HUDSON DE ARAÚJO COUTO, 1998 - versão 2007).</p><br><hr><br><br>
+                                    
+                                    <form class="form" action="../php/relatorioescritorio.php" method="post">
+            
+                                        <!-- CAMPOS EXISTENTES -->
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Supervisor</label>
+                                            <input type="text" name="txrepresentante" class="form_input" id="txrepresentante" placeholder="Supervisor" required>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Prédio</label>
+                                            <input type="text" name="txnomepredio" class="form_input" id="txnomepredio" placeholder="Prédio" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Setor</label>
+                                            <input type="text" name="txcc" class="form_input" id="txcc" placeholder="Setor" required>
+                                        </div>
+            
+                                        <div class="form_grupo">
+                                            <label for="" class="form_label">Cargo</label>
+                                            <input type="text" name="txestacao" class="form_input" id="txestacao" placeholder="Cargo" required>
+                                        </div>
+                                    
+                                        <div class="form_grupo">
+                                        <span class="legenda">Atenção:</span>
+                                        <p> Esta ferramenta não deve ser usada para definir se um trabalhador está ou não em risco de lesão 
+                                            nem para determinar nexo entre um distúrbio ou lesão e seu trabalho. (Esse tipo de conclusão 
+                                            depende de uma análise detalhada da exposição ocupacional). Também não deve ser usada como 
+                                            ferramenta única em análise ergonômica. </p>
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">1 - Avaliação da Cadeira:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 - Cadeira estofada - com espessura e maciez adequadas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1_nao" name="cadeira1" value="0">
+                                                <label for="cadeira1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira1_sim" name="cadeira1" value="1">
+                                                <label for="cadeira1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 - Tecido da cadeira permite transpiração?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira2_nao" name="cadeira2" value="0">
+                                                <label for="cadeira2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira2_sim" name="cadeira2" value="1">
+                                                <label for="cadeira2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 - Altura regulável e acionamento fácil do mecanismo de regulagem?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira3_nao" name="cadeira3" value="0">
+                                                <label for="cadeira3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira3_sim" name="cadeira3" value="1">
+                                                <label for="cadeira3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 - A altura máxima da cadeira é compatível com pessoas mais altas ou com pessoas baixas usando-a no nível mais elevado?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira4_nao" name="cadeira4" value="0">
+                                                <label for="cadeira4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira4_sim" name="cadeira4" value="1">
+                                                <label for="cadeira4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 - Largura da cadeira confortável?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira5_nao" name="cadeira5" value="0">
+                                                <label for="cadeira5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira5_sim" name="cadeira5" value="1">
+                                                <label for="cadeira5_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 - Assento na horizontal ou discreta inclinação para trás?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira6_nao" name="cadeira6" value="0">
+                                                <label for="cadeira6_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira6_sim" name="cadeira6" value="1">
+                                                <label for="cadeira6_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 - Assento de forma plana?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira7_nao" name="cadeira7" value="0">
+                                                <label for="cadeira7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira7_sim" name="cadeira7" value="1">
+                                                <label for="cadeira7_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 - Borda anterior do assento arredondada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira8_nao" name="cadeira8" value="0">
+                                                <label for="cadeira8_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira8_sim" name="cadeira8" value="1">
+                                                <label for="cadeira8_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>9 - Apoio dorsal com regulagem da inclinação?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira9_nao" name="cadeira9" value="0">
+                                                <label for="cadeira9_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira9_sim" name="cadeira9" value="1">
+                                                <label for="cadeira9_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>10 - Apoio dorsal fornece um suporte firme?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira10_nao" name="cadeira10" value="0">
+                                                <label for="cadeira10_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira10_sim" name="cadeira10" value="1">
+                                                <label for="cadeira10_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>11 - Forma do apoio acompanhando as curvaturas normais da coluna?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira11_nao" name="cadeira11" value="0">
+                                                <label for="cadeira11_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira11_sim" name="cadeira11" value="1">
+                                                <label for="cadeira11_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>12 - Regulagem da altura do apoio dorsal: existe e é de fácil utilização?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira12_nao" name="cadeira12" value="0">
+                                                <label for="cadeira12_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira12_sim" name="cadeira12" value="1">
+                                                <label for="cadeira12_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>13 - Espaço para acomodação das nádegas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira13_nao" name="cadeira13" value="0">
+                                                <label for="cadeira13_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira13_sim" name="cadeira13" value="1">
+                                                <label for="cadeira13_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>14 - Giratória?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira14_nao" name="cadeira14" value="0">
+                                                <label for="cadeira14_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira14_sim" name="cadeira14" value="1">
+                                                <label for="cadeira14_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>15 - Rodízios não muito duros nem muito leves?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira15_nao" name="cadeira15" value="0">
+                                                <label for="cadeira15_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira15_sim" name="cadeira15" value="1">
+                                                <label for="cadeira15_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>16 - Os braços da cadeira são de altura regulável e a regulagem é fácil?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira16_nao" name="cadeira16" value="0">
+                                                <label for="cadeira16_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira16_sim" name="cadeira16" value="1">
+                                                <label for="cadeira16_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira16_naplica" name="cadeira16" value="1">
+                                                <label for="cadeira16_naplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>17 - Os braços da cadeira prejudicam a aproximação do trabalhador até seu posto de trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira17_sim" name="cadeira17" value="0">
+                                                <label for="cadeira17_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira17_nao" name="cadeira17" value="1">
+                                                <label for="cadeira17_nao">Não (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira17_naplica" name="cadeira17" value="1">
+                                                <label for="cadeira17_naplica">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>18 - A cadeira tem algum outro mecanismo de conforto e que seja facilmente utilizável?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira18_nao" name="cadeira18" value="0">
+                                                <label for="cadeira18_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira18_sim" name="cadeira18" value="1">
+                                                <label for="cadeira18_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>19 - Por amostragem, percebe-se que os mecanismos de regulagem de altura, de inclinação e da altura do apoio dorsal estão funcionando bem?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira19_nao" name="cadeira19" value="0">
+                                                <label for="cadeira19_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="cadeira19_sim" name="cadeira19" value="1">
+                                                <label for="cadeira19_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">2 - Avaliação da Mesa de Trabalho:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 - É o tipo de móvel mais adequado para a função que é exercida?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel1_nao" name="movel1.1" value="0">
+                                                <label for="movel1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel1_sim" name="movel1.1" value="1">
+                                                <label for="movel1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 - Dimensões apropriadas considerando os diversos tipos de trabalho realizados? (espaço suficiente para escrita, leitura, consulta a documentos segundo a necessidade?)</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel2_nao" name="movel1.2" value="0">
+                                                <label for="movel2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel2_sim" name="movel1.2" value="1">
+                                                <label for="movel2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 - Altura apropriada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel3_nao" name="movel1.3" value="0">
+                                                <label for="movel3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel3_sim" name="movel1.3" value="1">
+                                                <label for="movel3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 - Permite regulagem de altura para pessoas muito altas ou muito baixas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel4_nao" name="movel1.4" value="0">
+                                                <label for="movel4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel4_sim" name="movel1.4" value="1">
+                                                <label for="movel4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 - Borda anterior arredondada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel5_nao" name="movel1.5" value="0">
+                                                <label for="movel5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel5_sim" name="movel1.5" value="1">
+                                                <label for="movel5_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 - Material não reflexivo? Cor adequada, para não refletir?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel6_nao" name="movel1.6" value="0">
+                                                <label for="movel6_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel6_sim" name="movel1.6" value="1">
+                                                <label for="movel6_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 - Espaço para as pernas suficientemente alto, largo e profundo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel7_nao" name="movel1.7" value="0">
+                                                <label for="movel7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel7_sim" name="movel1.7" value="1">
+                                                <label for="movel7_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 - Facilidade para a pessoa entrar e sair no posto de trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel8_nao" name="movel1.8" value="0">
+                                                <label for="movel8_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel8_sim" name="movel1.8" value="1">
+                                                <label for="movel8_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>9 - Permite o posicionamento do monitor de vídeo mais para frente ou mais para trás e esse ajuste pode ser feito facilmente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel9_nao" name="movel1.9" value="0">
+                                                <label for="movel9_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel9_sim" name="movel1.9" value="1">
+                                                <label for="movel9_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>10 - A mesa tem algum espaço para que o trabalhador guarde algum objeto pessoal (bolsa, pasta ou outro)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel10_nao" name="movel1.10" value="0">
+                                                <label for="movel10_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel10_sim" name="movel1.10" value="1">
+                                                <label for="movel10_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>11 - Os fios ficam organizados adequadamente, não interferindo na área de trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel11_nao" name="movel1.11" value="0">
+                                                <label for="movel11_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel11_sim" name="movel1.11" value="1">
+                                                <label for="movel11_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>12 - A mesa de trabalho tem algum outro mecanismo de conforto e que seja facilmente utilizável?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel12_nao" name="movel1.12" value="0">
+                                                <label for="movel12_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel12_sim" name="movel1.12" value="1">
+                                                <label for="movel12_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">3 - Avaliação do Suporte de Teclado:</span>
+
+                                        <p> Aplicar esta parte somente em trabalhos de digitação, de processamento de texto, 
+                                            de informação via computador (call-centers) ou em editoração eletrônica. Não 
+                                            deve ser aplicado quando a pessoa, embora em algum tipo de serviço como os que 
+                                            foram acima descritos, consegue se posicionar bem colocando o teclado sobre a mesa 
+                                            e mantém uma boa postura desta forma. Tampouco deve ser aplicado em atividades de 
+                                            interação com computador, situações em que não é necessário. </p><br>
+
+                                        <div class="form_grupo">
+                                            <p>1 – A altura do suporte do teclado é regulável e a regulagem é feita facilmente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado1_nao" name="teclado1.1" value="0">
+                                                <label for="teclado1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado1_sim" name="teclado1.1" value="1">
+                                                <label for="teclado1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – Suas dimensões são apropriadas, inclusive cabendo o mouse?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado2_nao" name="teclado1.2" value="0">
+                                                <label for="teclado2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado2_sim" name="teclado1.2" value="1">
+                                                <label for="teclado2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – Sua largura permite mover o teclado mais para perto ou mais para longe do operador?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado3_nao" name="teclado1.3" value="0">
+                                                <label for="teclado3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado3_sim" name="teclado1.3" value="1">
+                                                <label for="teclado3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – O suporte é capaz de amortecer vibrações ou sons criados ao se digitar ou datilografar?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado4_nao" name="teclado1.4" value="0">
+                                                <label for="teclado4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado4_sim" name="teclado1.4" value="1">
+                                                <label for="teclado4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – O espaço para as pernas é suficientemente alto, profundo e largo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado5_nao" name="teclado1.5" value="0">
+                                                <label for="teclado5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado5_sim" name="teclado1.5" value="1">
+                                                <label for="teclado5_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 – Facilidade para a pessoa entrar e sair no posto de trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado6_nao" name="teclado1.6" value="0">
+                                                <label for="teclado6_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado6_sim" name="teclado1.6" value="1">
+                                                <label for="teclado6_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 – Há apoio arredondado para o punho, ou a borda anterior da mesa é arredondada? Ou o próprio teclado tem uma aba complementar que funciona como apoio?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado7_nao" name="teclado1.7" value="0">
+                                                <label for="teclado7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado7_sim" name="teclado1.7" value="1">
+                                                <label for="teclado7_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 – O suporte de teclado ou seu mecanismo de regulagem tem alguma quina viva ou ponta capaz de ocasionar acidente ou ferimento nos joelhos, coxas ou pernas do usuário?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado8_sim" name="teclado1.8" value="0">
+                                                <label for="teclado8_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado8_nao" name="teclado1.8" value="1">
+                                                <label for="teclado8_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">4 - Avaliação do Apoio para os Pés:</span>
+
+                                        <p> Esse item deve ser checado no global, ou seja, se a empresa disponibiliza ou 
+                                            não o apoio de pés. Caso não disponibilize, esse item deve pesar desfavoravelmente 
+                                            no global. Caso disponibilize, aplicar o check-list. </p><br>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Largura suficiente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel1_nao" name="movel2.1" value="0">
+                                                <label for="movel1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel1_sim" name="movel2.1" value="1">
+                                                <label for="movel1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – Altura regulável? Ou disponível mais de um modelo, com alturas diferentes?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel2_nao" name="movel2.2" value="0">
+                                                <label for="movel2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel2_sim" name="movel2.2" value="1">
+                                                <label for="movel2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – Inclinação ajustável?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel3_nao" name="movel2.3" value="0">
+                                                <label for="movel3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel3_sim" name="movel2.3" value="1">
+                                                <label for="movel3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Pode ser movido para frente ou para trás no piso?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel4_nao" name="movel2.4" value="0">
+                                                <label for="movel4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel4_sim" name="movel2.4" value="1">
+                                                <label for="movel4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – Desliza facilmente no piso?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel5_sim" name="movel2.5" value="0">
+                                                <label for="movel5_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="movel5_nao" name="movel2.5" value="1">
+                                                <label for="movel5_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">5 - Avaliação do Porta-documentos:</span>
+
+                                        <p> Aplicar quando a atividade envolver a transcrição de textos ou números a partir de um documento escrito. </p><br>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Sua altura, distância e ângulo podem ser ajustados?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento1_nao" name="documento1" value="0">
+                                                <label for="documento1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento1_sim" name="documento1" value="1">
+                                                <label for="documento1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – O ajuste é feito com facilidade?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento2_nao" name="documento2" value="0">
+                                                <label for="documento2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento2_sim" name="documento2" value="1">
+                                                <label for="documento2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – Permite boa retenção ou fixação do documento?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento3_nao" name="documento3" value="0">
+                                                <label for="documento3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento3_sim" name="documento3" value="1">
+                                                <label for="documento3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Previne vibrações?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento4_nao" name="documento4" value="0">
+                                                <label for="documento4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento4_sim" name="documento4" value="1">
+                                                <label for="documento4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – Possui o espaço suficiente para o tipo de documento de que normalmente o trabalhador faz uso?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento5_nao" name="documento5" value="0">
+                                                <label for="documento5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento5_sim" name="documento5" value="1">
+                                                <label for="documento5_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 – Permite que o usuário o coloque na posição mais próxima possível do ângulo de visão da tela e que possa ser usado nessa posição?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento6_nao" name="documento6" value="0">
+                                                <label for="documento6_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="documento6_sim" name="documento6" value="1">
+                                                <label for="documento6_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">6 - Avaliação do Teclado:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 – É macio?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado1_nao" name="teclado2.1" value="0">
+                                                <label for="teclado1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado1_sim" name="teclado2.1" value="1">
+                                                <label for="teclado1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – As teclas têm dimensões corretas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado2_nao" name="teclado2.2" value="0">
+                                                <label for="teclado2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado2_sim" name="teclado2.2" value="1">
+                                                <label for="teclado2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – As teclas têm forma côncava, permitindo o encaixe do dedo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado3_nao" name="teclado2.3" value="0">
+                                                <label for="teclado3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado3_sim" name="teclado2.3" value="1">
+                                                <label for="teclado3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Tem mecanismo de inclinação?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado4_nao" name="teclado2.4" value="0">
+                                                <label for="teclado4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="teclado4_sim" name="teclado2.4" value="1">
+                                                <label for="teclado4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">7 - Avaliação do Monitor de Vídeo:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Está localizado na frente do trabalhador?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor1_nao" name="monitor1" value="0">
+                                                <label for="monitor1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor1_sim" name="monitor1" value="1">
+                                                <label for="monitor1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – Sua altura está adequada?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor2_nao" name="monitor2" value="0">
+                                                <label for="monitor2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor2_sim" name="monitor2" value="1">
+                                                <label for="monitor2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – Há mecanismo de regulagem de altura disponível e este ajuste pode ser feito facilmente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor3_nao" name="monitor3" value="0">
+                                                <label for="monitor3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor3_sim" name="monitor3" value="1">
+                                                <label for="monitor3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Pode ser inclinado e este ajuste pode ser feito facilmente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor4_nao" name="monitor4" value="0">
+                                                <label for="monitor4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor4_sim" name="monitor4" value="1">
+                                                <label for="monitor4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – Tem controle de brilho ou de iluminação da tela?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor5_nao" name="monitor5" value="0">
+                                                <label for="monitor5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor5_sim" name="monitor5" value="1">
+                                                <label for="monitor5_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 – Há tremores na tela?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor6_sim" name="monitor6" value="0">
+                                                <label for="monitor6_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor6_nao" name="monitor6" value="1">
+                                                <label for="monitor6_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 – A imagem permanece claramente definida em luminância máxima?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor7_nao" name="monitor7" value="0">
+                                                <label for="monitor7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor7_sim" name="monitor7" value="1">
+                                                <label for="monitor7_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 – É fosco?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor8_nao" name="monitor8" value="0">
+                                                <label for="monitor8_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="monitor8_sim" name="monitor8" value="1">
+                                                <label for="monitor8_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">8 - Avaliação do Gabinete e CPU:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Toma espaço excessivo no posto de trabalho?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="equipamento1_sim" name="equipamento1" value="0">
+                                                <label for="equipamento1_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="equipamento1_nao" name="equipamento1" value="1">
+                                                <label for="equipamento1_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – Transmite calor radiante para o corpo do trabalhador?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="equipamento2_sim" name="equipamento2" value="0">
+                                                <label for="equipamento2_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="equipamento2_nao" name="equipamento2" value="1">
+                                                <label for="equipamento2_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – Gera nível excessivo de ruído?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="equipamento3_sim" name="equipamento3" value="0">
+                                                <label for="equipamento3_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="equipamento3_nao" name="equipamento3" value="1">
+                                                <label for="equipamento3_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">9 - Avaliação do Notebook e Acessórios:</span>
+
+                                        <p> Somente aplicar caso faça parte da atividade do trabalhador o seu uso rotineiro. </p><br>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Há disponibilidade de um suporte para elevar a tela do equipamento até a altura dos olhos, um teclado externo e um mouse externo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook1_nao" name="notebook1" value="0">
+                                                <label for="notebook1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook1_sim" name="notebook1" value="1">
+                                                <label for="notebook1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – É leve (menos que 1,5 kg)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook2_nao" name="notebook2" value="0">
+                                                <label for="notebook2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook2_sim" name="notebook2" value="1">
+                                                <label for="notebook2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – O teclado mais frequentemente utilizado (do notebook ou o auxiliar) possui teclas em separado para a função de PgUp, PgDn, Home e End?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook3_nao" name="notebook3" value="0">
+                                                <label for="notebook3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook3_sim" name="notebook3" value="1">
+                                                <label for="notebook3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – O teclado do notebook possui a mesma configuração do teclado do desktop?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook4_nao" name="notebook4" value="0">
+                                                <label for="notebook4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook4_sim" name="notebook4" value="1">
+                                                <label for="notebook4_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook4_na" name="notebook4" value="1">
+                                                <label for="notebook4_na">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – As teclas têm dimensão semelhante às dos teclados de desktop?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook5_nao" name="notebook5" value="0">
+                                                <label for="notebook5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook5_sim" name="notebook5" value="1">
+                                                <label for="notebook5_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 – As teclas têm forma côncava, permitindo o encaixe do dedo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook6_nao" name="notebook6" value="0">
+                                                <label for="notebook6_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook6_sim" name="notebook6" value="1">
+                                                <label for="notebook6_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 – O teclado tem inclinação (de forma que as teclas mais distantes do corpo do usuário fiquem ligeiramente mais elevadas)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook7_nao" name="notebook7" value="0">
+                                                <label for="notebook7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook7_sim" name="notebook7" value="1">
+                                                <label for="notebook7_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 – A tela tem dimensão de 14 polegadas ou mais?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook8_nao" name="notebook8" value="0">
+                                                <label for="notebook8_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook8_sim" name="notebook8" value="1">
+                                                <label for="notebook8_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>9 – A tela é fosca?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook9_nao" name="notebook9" value="0">
+                                                <label for="notebook9_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook9_sim" name="notebook9" value="1">
+                                                <label for="notebook9_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>10 – Tem dispositivos para inserção de vários tipos de mídia disponíveis?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook10_nao" name="notebook10" value="0">
+                                                <label for="notebook10_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="notebook10_sim" name="notebook10" value="1">
+                                                <label for="notebook10_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">10 - Avaliação da Interação e do Layout:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Está o trabalhador na posição correta em relação ao tipo de função e ao leiaute da sala?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente1_nao" name="ambiente1" value="0">
+                                                <label for="ambiente1_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente1_sim" name="ambiente1" value="1">
+                                                <label for="ambiente1_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – Há uma área mínima de 6 metros quadrados por pessoa ou existe uma separação mínima entre as pessoas de 122 cm?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente2_nao" name="ambiente2" value="0">
+                                                <label for="ambiente2_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente2_sim" name="ambiente2" value="1">
+                                                <label for="ambiente2_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – O local de trabalho permite boa concentração?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente3_nao" name="ambiente3" value="0">
+                                                <label for="ambiente3_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente3_sim" name="ambiente3" value="1">
+                                                <label for="ambiente3_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Quando necessário ligar algum equipamento elétrico, as tomadas estão em altura de 75 cm?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente4_nao" name="ambiente4" value="0">
+                                                <label for="ambiente4_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente4_sim" name="ambiente4" value="1">
+                                                <label for="ambiente4_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – Quando necessário usar algum dispositivo complementar, o acesso aos respectivos pontos de conexão no corpo do computador é fácil?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente5_nao" name="ambiente5" value="0">
+                                                <label for="ambiente5_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente5_sim" name="ambiente5" value="1">
+                                                <label for="ambiente5_sim">Sim (1)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente5_na" name="ambiente5" value="1">
+                                                <label for="ambiente5_na">Não se aplica (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 – Há algum fator que leve à necessidade de se trabalhar em contração estática do tronco?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente6_sim" name="ambiente6" value="0">
+                                                <label for="ambiente6_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente6_nao" name="ambiente6" value="1">
+                                                <label for="ambiente6_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 – No caso de necessidade de consultar o terminal enquanto atende ao telefone, um equipamento tipo headset está sempre disponível? Em número suficiente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente7_nao" name="ambiente7" value="0">
+                                                <label for="ambiente7_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente7_sim" name="ambiente7" value="1">
+                                                <label for="ambiente7_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 – Há interferências que prejudicam o posicionamento do corpo – por exemplo, estabilizadores, caixas de lixo, caixas e outros materiais debaixo da mesa? CPUs?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente8_sim" name="ambiente8" value="0">
+                                                <label for="ambiente8_sim">Sim (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente8_nao" name="ambiente8" value="1">
+                                                <label for="ambiente8_nao">Não (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>9 – O sistema de trabalho permite que o usuário alterne sua postura de modo a ficar de pé ocasionalmente?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente9_nao" name="ambiente9" value="0">
+                                                <label for="ambiente9_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente9_sim" name="ambiente9" value="1">
+                                                <label for="ambiente9_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>10 – O clima é adequado (temperatura efetiva entre 20ºC e 23ºC)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente10_nao" name="ambiente10" value="0">
+                                                <label for="ambiente10_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente10_sim" name="ambiente10" value="1">
+                                                <label for="ambiente10_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>11 – O nível sonoro é apropriado (menor que 65 dBA)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente11_nao" name="ambiente11" value="0">
+                                                <label for="ambiente11_nao">Não (0)</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="ambiente11_sim" name="ambiente11" value="">
+                                                <label for="ambiente11_sim">Sim (1)</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">11 - Avaliação do Sistema de Trabalho:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Caso o trabalho envolva uso somente de computador, existe pausa bem estabelecida de 10 minutos a cada 50 minutos trabalhados?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="uso-computador-sim" name="uso-computador" value="1">
+                                                <label for="uso-computador-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="uso-computador-nao" name="uso-computador" value="0">
+                                                <label for="uso-computador-nao">Não</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="uso-computador-na" name="uso-computador" value="1">
+                                                <label for="uso-computador-na">Não se aplica</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – No caso de digitação, o número médio de toques é menor que 8.000 por hora? Ou no caso de ser maior que 8.000 por hora, há pausas de compensação bem definidas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="digitacao-sim" name="digitacao" value="1">
+                                                <label for="digitacao-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="digitacao-nao" name="digitacao" value="0">
+                                                <label for="digitacao-nao">Não</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="digitacao-na" name="digitacao" value="1">
+                                                <label for="digitacao-na">Não se aplica</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – Há pausa de 10 minutos a cada duas horas trabalhadas? Ou verifica-se a possibilidade real de as pessoas terem um tempo de descanso de aproximadamente 10 minutos a cada duas horas trabalhadas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pausa-trabalho-sim" name="pausa-trabalho" value="1">
+                                                <label for="pausa-trabalho-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="pausa-trabalho-nao" name="pausa-trabalho" value="0">
+                                                <label for="pausa-trabalho-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – O software utilizado funciona bem?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="software-sim" name="software" value="1">
+                                                <label for="software-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="software-nao" name="software" value="0">
+                                                <label for="software-nao">Não</label>
+                                            </div>
+                                        </div>
+                        
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">12 - Avaliação da Iluminação do Ambiente:</span>
+
+                                        <div class="form_grupo">
+                                            <p>1 – Iluminação entre 450 – 550 lux?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="iluminacao-sim" name="iluminacao" value="1">
+                                                <label for="iluminacao-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="iluminacao-nao" name="iluminacao" value="0">
+                                                <label for="iluminacao-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – Para pessoas com mais de 45 anos está disponível iluminação suplementar?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="iluminacao-sup-sim" name="iluminacao-sup" value="1">
+                                                <label for="iluminacao-sup-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="iluminacao-sup-nao" name="iluminacao-sup" value="0">
+                                                <label for="iluminacao-sup-nao">Não</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="iluminacao-sup-na" name="iluminacao-sup" value="1">
+                                                <label for="iluminacao-sup-na">Não se aplica</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – A visão do trabalhador está livre de reflexos? (ver tela, teclados, mesa, papéis, etc...)?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="reflexos-sim" name="reflexos" value="1">
+                                                <label for="reflexos-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="reflexos-nao" name="reflexos" value="0">
+                                                <label for="reflexos-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Estão todas as fontes de deslumbramento fora do campo de visão do operador?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="deslumbramento-sim" name="deslumbramento" value="1">
+                                                <label for="deslumbramento-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="deslumbramento-nao" name="deslumbramento" value="0">
+                                                <label for="deslumbramento-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – Estão os postos de trabalho posicionados de lado para as janelas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postos-sim" name="postos" value="1">
+                                                <label for="postos-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postos-nao" name="postos" value="0">
+                                                <label for="postos-nao">Não</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="postos-na" name="postos" value="1">
+                                                <label for="postos-na">Não há janelas</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>6 – Caso contrário, as janelas têm persianas?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="persianas-sim" name="persianas" value="1">
+                                                <label for="persianas-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="persianas-nao" name="persianas" value="0">
+                                                <label for="persianas-nao">Não</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="persianas-na" name="persianas" value="1">
+                                                <label for="persianas-na">Não se aplica</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>7 – O brilho do piso é baixo?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="brilho-sim" name="brilho" value="1">
+                                                <label for="brilho-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="brilho-nao" name="brilho" value="0">
+                                                <label for="brilho-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>8 – A legibilidade do documento é satisfatória?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="legibilidade-sim" name="legibilidade" value="1">
+                                                <label for="legibilidade-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="legibilidade-nao" name="legibilidade" value="0">
+                                                <label for="legibilidade-nao">Não</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form_grupo">
+                                        <span class="legenda">13 - Acessibilidade:</span>
+
+                                        <p> Embora esse item não seja diretamente relacionado ao posto de 
+                                            trabalho informatizado, deve ser inserido como fundamental na inclusão 
+                                            de pessoas com deficiência, especialmente na locomoção. </p><br>
+
+                                        <div class="form_grupo">
+                                            <p>1 – O acesso ao posto de trabalho é condizente com a condição física de pessoas com locomoção difícil?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="acesso-trabalho-sim" name="acesso-trabalho" value="1">
+                                                <label for="acesso-trabalho-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="acesso-trabalho-nao" name="acesso-trabalho" value="0">
+                                                <label for="acesso-trabalho-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>2 – O acesso às áreas comuns (copa, refeitório) é condizente com a condição física de pessoas com locomoção difícil?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="acesso-areas-comuns-sim" name="acesso-areas-comuns" value="1">
+                                                <label for="acesso-areas-comuns-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="acesso-areas-comuns-nao" name="acesso-areas-comuns" value="0">
+                                                <label for="acesso-areas-comuns-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>3 – O acesso às instalações sanitárias (vaso sanitário e pia) é condizente com a condição física de pessoas com locomoção difícil?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="acesso-sanitarias-sim" name="acesso-sanitarias" value="1">
+                                                <label for="acesso-sanitarias-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="acesso-sanitarias-nao" name="acesso-sanitarias" value="0">
+                                                <label for="acesso-sanitarias-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>4 – Diante de necessidade de comportamentos de emergência que exijam a evacuação de pessoal, pessoas com locomoção difícil terão facilidade em deixar o edifício?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="evacuacao-sim" name="evacuacao" value="1">
+                                                <label for="evacuacao-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="evacuacao-nao" name="evacuacao" value="0">
+                                                <label for="evacuacao-nao">Não</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form_grupo">
+                                            <p>5 – Botões de emergência e interruptores de iluminação são de fácil alcance?</p><br>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="botoes-alcance-sim" name="botoes-alcance" value="1">
+                                                <label for="botoes-alcance-sim">Sim</label>
+                                            </div>
+                                            <div class="radio-btn">
+                                                <input type="radio" id="botoes-alcance-nao" name="botoes-alcance" value="0">
+                                                <label for="botoes-alcance-nao">Não</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="submit">
+                                            <input type="hidden" name="submit_evento" value="2">
+                                            <button type="submit" name="submit" class="submit_btn">Enviar Questionário</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </section>
+                </section>
+                `;
+            }
+        }
+    </script>
+</body>
+
+</html>
